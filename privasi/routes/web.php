@@ -21,6 +21,7 @@ Route::post('/ceklogin','Logincontroller@ceklogin');
 Route::get('/logout','Logincontroller@logout');
 Route::post('/savejenisbrg','Mastercontroller@create');
 Route::post('/saveuser','Usercontroller@create');
+Route::post('/savepengiriman','Pengirimancontroller@create');
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard','Maincontroller@index');
@@ -36,4 +37,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/edituser/{id}','Usercontroller@edituser');
     Route::post('/updateuser/{id}','Usercontroller@updateuser');
     Route::get('/deleteuser/{id}','Usercontroller@deleteuser');
+    // pengiriman module
+    Route::get('/listpengiriman','Pengirimancontroller@listpengiriman');
+    Route::get('/addpengiriman','Pengirimancontroller@addpengiriman');
+    Route::get('/deletepengiriman/{id}','Pengirimancontroller@deletepengiriman');
 });
