@@ -25,6 +25,7 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
+              @if (auth()->user()->level == '1')
               <ul class="nav side-menu">
                     <h3>General</h3>
                <li><a href="/siskargo/dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
@@ -39,6 +40,18 @@
               <li><a href="/siskargo/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
               
                     </ul>
+                    @else
+                    <ul class="nav side-menu">
+                    <h3>General</h3>
+               <li><a href="/siskargo/dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
+               <!-- <li><a href="/siskargo/liststaff"><i class="fa fa-users"></i> List Staff </a></li> -->
+               <h3>Pengiriman</h3>
+               <li><a href="/siskargo/listpengiriman"><i class="fa fa-truck"></i> List Pengiriman </a></li>
+               <h3>Others</h3>
+              <li><a href="/siskargo/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
+              
+                    </ul>
+                    @endif
                 
                 
 				

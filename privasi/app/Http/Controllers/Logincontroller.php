@@ -14,7 +14,7 @@ class Logincontroller extends Controller
     public function ceklogin(Request $request)
     {
       if (Auth::attempt($request->only('email','password'))){
-          return redirect('/dashboard');
+       return redirect('/dashboard');
       }
       return redirect('/');
     }

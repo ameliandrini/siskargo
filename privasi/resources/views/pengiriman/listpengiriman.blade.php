@@ -33,8 +33,10 @@
 						  <th>Tanggal</th>
 						  <th>Nama Pengirim</th>
 						  <th>Kota Asal</th>
-						  <th>Nama Penerima</th>
-						  <th>Kota Tujuan</th>
+						  <!-- <th>Nama Penerima</th>
+						  <th>Kota Tujuan</th> -->
+						  <th>Jenis Barang</th>
+						  <th>Status</th>
 						  <th>Action</th>
                         </tr>
                       </thead>
@@ -47,12 +49,26 @@
 						  <td>{{$pengiriman->pengiriman_tgl}}</td>
 						  <td>{{$pengiriman->pengiriman_namapengirim}}</td>							
 						  <td>{{$pengiriman->pengiriman_kotapengirim}}</td>
-						  <td>{{$pengiriman->pengiriman_namapenerima}}</td>							
-                          <td>{{$pengiriman->pengiriman_kotapenerima}}</td>
+						  <!-- <td>{{$pengiriman->pengiriman_namapenerima}}</td>							
+						  <td>{{$pengiriman->pengiriman_kotapenerima}}</td> -->
+						  <td>{{$pengiriman->jenis_nama}}</td>
+						  <td>{{$pengiriman->status_desc}}</td>
                           <td>
                             <!-- <a href="/siskargo/editpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Edit
 							<a href="/siskargo/deletepengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-danger item_deletepengiriman" data-id="{{$pengiriman->pengiriman_id}}">Delete -->
+							
+							@if (auth()->user()->level == '1')
 							<a href="/siskargo/detailpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Detail</a>
+							@else
+							<a href="/siskargo/detailpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Detail</a>
+							@if ($pengiriman->pengiriman_statuskirim == '1')
+							<a href="/siskargo/updatestatuspengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-success item_updatestatuspengiriman" data-id="{{$pengiriman->pengiriman_id}}" data-status="2">Kirim</a>
+							@elseif ($pengiriman->pengiriman_statuskirim == '2')
+							<a href="/siskargo/updatestatuspengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-success item_updatestatuspengiriman" data-id="{{$pengiriman->pengiriman_id}}" data-status="3">Sampai Tujuan</a>
+							@else
+							<label>Selesai</label>
+							@endif
+							@endif
 						</td>
                         </tr>
                       @endforeach
@@ -76,10 +92,11 @@
 		});
 		
 			//prosesdelete
-			$(document).on('click','.item_deletepengiriman',function(e) {
+			$(document).on('click','.item_updatestatuspengiriman',function(e) {
 			var user_id = $(this).data('id');
-			var title = "Hapus Data";
-			var text = "Apakah anda yakin ingin menghapus data ini ?";
+			var status = $(this).data('status');
+			var title = "Ubah Status";
+			var text = "Apakah anda yakin ingin mengubah status pengiriman ?";
 		
 			swal({
 			  title: title,
@@ -95,15 +112,15 @@
 			  showLoaderOnConfirm: true
 			}, function () {
 				$.ajax({
-					url:"{{url('/deletepengiriman/')}}/"+user_id,
+					url:"{{url('/updatestatuspengiriman/')}}/"+user_id+"/"+status,
 					dataType:'text',
-					data : {user_id:user_id},
+					data : {user_id:user_id,status:status},
 					success:function(e){
 						if (e !== "error") {
 						swal({
 						  title: "Success",
 						  confirmButtonColor: "#002855",
-						  text: "Data Berhasil Dihapus !",
+						  text: "Status Berhasil Diubah !",
 						  type: "success"
 						},function(){
 							window.location='/siskargo/listpengiriman';

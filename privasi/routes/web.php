@@ -41,4 +41,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/listpengiriman','Pengirimancontroller@listpengiriman');
     Route::get('/addpengiriman','Pengirimancontroller@addpengiriman');
     Route::get('/deletepengiriman/{id}','Pengirimancontroller@deletepengiriman');
+    Route::get('/detailpengiriman/{id}','Pengirimancontroller@detailpengiriman');
+    Route::get('/updatestatuspengiriman/{id}/{status}','Pengirimancontroller@updatestatuspengiriman');
 });
