@@ -45,7 +45,18 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="password" disabled class="form-control col-md-7 col-xs-12" id="password" name="password" aria-describedby="password" value="{{$user->password}}">
                                 </div>
-                              </div>
+							  </div>
+							  <div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="level">Level </label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<select id="level" name="level" class="form-control col-md-7 col-xs-12">
+						@foreach($data_level as $level)
+							<option value="{{$level -> level_id}}" {{$user -> level == $level -> level_id ? 'selected' : '' }}>{{$level -> level_name}}</option>
+						@endforeach
+						</select>
+						
+						</div>
+					</div>
 					<input type="hidden" class="form-control col-md-7 col-xs-12" id="created_by" name="created_by" aria-describedby="created_by" value="{{$user->created_by}}">
 					<input type="hidden" class="form-control col-md-7 col-xs-12" id="userid" name="userid" aria-describedby="userid" value="{{$user->id}}">
                     <div class="form-group">

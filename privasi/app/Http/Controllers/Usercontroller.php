@@ -15,13 +15,14 @@ class Usercontroller extends Controller
     }
     public function adduser()
     {
-       return view('user/adduser');
+        $data_level =  DB::table('level')->get();
+       return view('user/adduser',['data_level' => $data_level]);
     }
     public function create(Request $request)
     {
         // \App\User::create($request->all());
         DB::table('users')->insert(
-            ['name' => $request->name, 'email' => $request->email,'password' => bcrypt($request->password),'remember_token' => Str::random(60)]
+            ['name' => $request->name, 'email' => $request->email,'password' => bcrypt($request->password),'remember_token' => Str::random(60),'level' => $request->level]
         );
         // dd($request->all());
         return 'berhasil';
@@ -29,7 +30,8 @@ class Usercontroller extends Controller
     public function edituser($id)
     {
        $user = \App\User::find($id);
-       return view('user/edituser',['user' => $user]);
+       $data_level =  DB::table('level')->get();
+       return view('user/edituser',['user' => $user,'data_level' => $data_level]);
     }
     public function updateuser(Request $request, $id)
     {

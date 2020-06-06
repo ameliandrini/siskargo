@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class Pengirimancontroller extends Controller
 {
@@ -61,6 +62,14 @@ class Pengirimancontroller extends Controller
               ->where('pengiriman_id', $id)
               ->update(['pengiriman_statuskirim' => $status]);
         return 'berhasil';
+    }
+    public function invoicepengiriman($id)
+    {
+    
+        $pengiriman = \App\Pengiriman::find($id);
+
+        $pdf = PDF::loadView('pengiriman/invoicepengiriman', ['invoice' => $pengiriman])->setPaper('a4', 'landscape');;
+        return $pdf->stream();
     }
     
 }

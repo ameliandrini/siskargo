@@ -43,4 +43,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/deletepengiriman/{id}','Pengirimancontroller@deletepengiriman');
     Route::get('/detailpengiriman/{id}','Pengirimancontroller@detailpengiriman');
     Route::get('/updatestatuspengiriman/{id}/{status}','Pengirimancontroller@updatestatuspengiriman');
+    Route::get('/invoicepengiriman/{id}','Pengirimancontroller@invoicepengiriman');
+    // report module
+    Route::get('/reportkirim','Reportcontroller@reportkirim');
+    Route::post('/pdfpengiriman','Reportcontroller@pdfpengiriman');
 });

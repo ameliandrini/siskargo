@@ -45,7 +45,17 @@
                     <input type="password" class="form-control col-md-7 col-xs-12" id="password" name="password" aria-describedby="password">
                                 </div>
                               </div>
-                              
+							  <div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="level">Level </label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<select id="level" name="level" class="form-control col-md-7 col-xs-12">
+						@foreach($data_level as $level)
+							<option value="{{$level -> level_id}}">{{$level -> level_name}}</option>
+						@endforeach
+						</select>
+						
+						</div>
+					</div>
 					<input type="hidden" class="form-control col-md-7 col-xs-12" id="created_by" name="created_by" aria-describedby="created_by" value="{{auth()->user()->id}}">
                     <div class="form-group">
 					<input type="hidden" class="form-control col-md-7 col-xs-12" id="updated_by" name="updated_by" aria-describedby="updated_by" value="{{auth()->user()->id}}">

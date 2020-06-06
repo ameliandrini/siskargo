@@ -59,6 +59,7 @@
 							
 							@if (auth()->user()->level == '1')
 							<a href="/siskargo/detailpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Detail</a>
+							<a href="/siskargo/invoicepengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-warning">Cetak Invoice</a>
 							@else
 							<a href="/siskargo/detailpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Detail</a>
 							@if ($pengiriman->pengiriman_statuskirim == '1')
