@@ -22,9 +22,15 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content" style="height:100%">
-                  <input type="hidden" id="userid" value="">
-                  <a href="/siskargo/addpengiriman" class="btn btn-success" title="Tambah Pengiriman" data-target=".bs-example-modal-smadd" style="float:right;display:block;" 
+				  <input type="hidden" id="userid" value="">
+				  	@if (auth()->user()->level == '1')
+					  <a href="/siskargo/addpengiriman" class="btn btn-success" title="Tambah Pengiriman" data-target=".bs-example-modal-smadd" style="float:right;display:block;" 
                   id="tomboltambah"><i class="fa fa-plus"></i> Tambah Pengiriman</a></br>
+					@else
+					&nbsp;</br>
+					@endif
+
+                  
                   </br>
                   <table id="mydata" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
                       <thead>
@@ -60,6 +66,13 @@
 							@if (auth()->user()->level == '1')
 							<a href="/siskargo/detailpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Detail</a>
 							<a href="/siskargo/invoicepengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-warning">Cetak Invoice</a>
+							@if ($pengiriman->pengiriman_statuskirim == '1')
+							<a href="/siskargo/updatestatuspengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-success item_updatestatuspengiriman" data-id="{{$pengiriman->pengiriman_id}}" data-status="2">Kirim</a>
+							@elseif ($pengiriman->pengiriman_statuskirim == '2')
+							<label>Sampai Tujuan</label>
+							@else
+							<label>Selesai</label>
+							@endif
 							@else
 							<a href="/siskargo/detailpengiriman/{{$pengiriman->pengiriman_id}}" class="btn btn-primary">Detail</a>
 							@if ($pengiriman->pengiriman_statuskirim == '1')
