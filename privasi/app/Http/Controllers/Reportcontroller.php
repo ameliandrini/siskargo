@@ -14,8 +14,19 @@ class Reportcontroller extends Controller
     public function pdfpengiriman(Request $request)
     {
     
+      $dd1 = substr($request->pengiriman_tgl1,0,2);
+      $mm1 = substr($request->pengiriman_tgl1,3,2);
+      $yyyy1 = substr($request->pengiriman_tgl1,6,4);
+      $tgl1 = $yyyy1."-".$mm1."-".$dd1;
+
+      $dd2 = substr($request->pengiriman_tgl2,0,2);
+      $mm2 = substr($request->pengiriman_tgl2,3,2);
+      $yyyy2 = substr($request->pengiriman_tgl2,6,4);
+      $tgl2 = $yyyy2."-".$mm2."-".$dd2;
+      // dd($fd);
+      
         $pengiriman = DB::table('view_pengiriman')
-        ->whereBetween('pengiriman_tgl', [\Carbon\Carbon::parse($request->pengiriman_tgl1)->format('Y-d-m'), \Carbon\Carbon::parse($request->pengiriman_tgl2)->format('Y-d-m')])
+        ->whereBetween('pengiriman_tgl', [$tgl1, $tgl2])
         ->get();
 
         $pdf = PDF::loadView('report/reportpengiriman', ['data_reportpengiriman' => $pengiriman])->setPaper('a4', 'landscape');;
