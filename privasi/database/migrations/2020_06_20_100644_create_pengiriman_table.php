@@ -16,7 +16,7 @@ class CreatePengirimanTable extends Migration
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->increments('pengiriman_id');
             $table->date('pengiriman_tanggal');
-            $table->string('pengiriman_jenisbrg');
+            $table->integer('pengiriman_jenisbrg');
             $table->integer('pengiriman_jumlah');
             $table->integer('pengiriman_panjang');
             $table->integer('pengiriman_lebar');
@@ -30,8 +30,8 @@ class CreatePengirimanTable extends Migration
             $table->string('pengiriman_nohppenerima');
             $table->string('pengiriman_kotapenerima');
             $table->string('pengiriman_ongkir');
-            $table->string('pengiriman_statuskirim');
-            $table->string('pengiriman_kurirkirim');
+            $table->integer('pengiriman_statuskirim');
+            $table->bigInteger('pengiriman_kurirkirim');
             $table->string('created_by');
             $table->timestamps('created_at');
             $table->string('updated_by');
