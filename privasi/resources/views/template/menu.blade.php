@@ -33,6 +33,7 @@
                <li><a href="/siskargo/listuser"><i class="fa fa-users"></i> List Pengguna </a></li>
                <h3>Pengiriman</h3>
                <li><a href="/siskargo/listjenisbrg"><i class="fa fa-inbox"></i> Jenis Barang </a></li>
+               <li><a href="/siskargo/listbarangkiriman"><i class="fa fa-truck"></i> List Barang Kiriman </a></li>
                <li><a href="/siskargo/listpengiriman"><i class="fa fa-truck"></i> List Pengiriman </a></li>
                <h3>Report</h3>
                <li><a href="/siskargo/reportkirim"><i class="fa fa-file-pdf-o"></i> Pengiriman </a></li>
@@ -46,6 +47,7 @@
                <li><a href="/siskargo/dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
                <!-- <li><a href="/siskargo/liststaff"><i class="fa fa-users"></i> List Staff </a></li> -->
                <h3>Pengiriman</h3>
+               <li><a href="/siskargo/listbarangkiriman"><i class="fa fa-truck"></i> List Barang Kiriman </a></li>
                <li><a href="/siskargo/listpengiriman"><i class="fa fa-truck"></i> List Pengiriman </a></li>
                <h3>Others</h3>
               <li><a href="/siskargo/logout"><i class="fa fa-sign-out"></i> Logout </a></li>

@@ -22,6 +22,8 @@ Route::get('/logout','Logincontroller@logout');
 Route::post('/savejenisbrg','Mastercontroller@create');
 Route::post('/saveuser','Usercontroller@create');
 Route::post('/savepengiriman','Pengirimancontroller@create');
+Route::post('/savebarangkiriman','Barangkirimancontroller@create');
+Route::post('/saveitempengiriman','Pengirimancontroller@createitem');
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard','Maincontroller@index');
@@ -43,8 +45,16 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/deletepengiriman/{id}','Pengirimancontroller@deletepengiriman');
     Route::get('/detailpengiriman/{id}','Pengirimancontroller@detailpengiriman');
     Route::get('/updatestatuspengiriman/{id}/{status}','Pengirimancontroller@updatestatuspengiriman');
-    Route::get('/invoicepengiriman/{id}','Pengirimancontroller@invoicepengiriman');
+    Route::get('/invoicepengiriman/{id}','Barangkirimancontroller@invoicepengiriman');
+    // added 20200627 by asdam
+    Route::get('/suratjalan/{id}','Pengirimancontroller@suratjalan');
     // report module
     Route::get('/reportkirim','Reportcontroller@reportkirim');
     Route::post('/pdfpengiriman','Reportcontroller@pdfpengiriman');
+    // barangkiriman module
+    Route::get('/listbarangkiriman','Barangkirimancontroller@listbarangkiriman');
+    Route::get('/addbarangkiriman','Barangkirimancontroller@addbarangkiriman');
+    Route::get('/deletebarangkiriman/{id}','Barangkirimancontroller@deletebarangkiriman');
+    Route::get('/detailbarangkiriman/{id}','Barangkirimancontroller@detailbarangkiriman');
+    Route::get('/updatestatusbarangkiriman/{id}/{status}','Barangkirimancontroller@updatestatusbarangkiriman');
 });

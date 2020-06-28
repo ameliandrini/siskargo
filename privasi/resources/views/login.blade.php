@@ -40,7 +40,8 @@
 			
 		  </div>
 		</div>
-	  </div>
+    </div>
+    <!-- end small modal -->
         <div class="animate form login_form">
           <section class="login_content">
 		  <img src="{{ asset('/assets/images/logoawr.png')}}" style="height:30%;width:30%;">

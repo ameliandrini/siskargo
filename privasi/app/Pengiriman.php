@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pengiriman extends Model
 {
-    protected $primaryKey = 'pengiriman_id';
-    protected $table = 'view_pengiriman';
-    protected $fillable = ['pengiriman_tgl','pengiriman_jenisbrg','pengiriman_jumlah','pengiriman_panjang','pengiriman_lebar','pengiriman_totalberat','pengiriman_namapengirim','pengiriman_alamatpengirim','pengiriman_nohppengirim','pengiriman_kotapengirim','pengiriman_namapenerima','pengiriman_alamatpenerima','pengiriman_nohppenerima','pengiriman_kotapenerima','pengiriman_ongkir','created_by','updated_by'];
+    protected $primaryKey = 'pengirimanh_id';
+    protected $table = 'view_pengirimanh';
+    protected $fillable = ['pengirimanh_harijln','pengirimanh_tgljln','pengirimanh_nopol','pengirimanh_supir','pengirimanh_trip','pengirimanh_jenismuatan','pengirimanh_upahmobil','pengirimanh_uangjalanjkt','pengirimanh_uangsisabkt','pengirimanh_berat','pengirimanh_ket','created_by','updated_by'];
 }

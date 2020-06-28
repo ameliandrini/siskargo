@@ -25,10 +25,13 @@
                 <form id="form-addpengiriman" data-parsley-validate class="form-horizontal form-label-left" method="post" >
                     {{csrf_field()}}
 					<div class="form-group">
-						<label for="pengiriman_tgl" class="control-label col-md-3 col-sm-3 col-xs-12" >Tanggal </label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
+						<label for="pengirimanh_harijln" class="control-label col-md-3 col-sm-3 col-xs-12" >Waktu Pengiriman </label>
+						<div class="col-md-3 col-sm-3 col-xs-12">
+							<input type="text" class="form-control col-md-7 col-xs-12" id="pengirimanh_harijln" name="pengirimanh_harijln" aria-describedby="pengirimanh_harijln" placeholder="Hari">
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-12">
 						<div class="input-group date" id="myDatepicker2">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_tgl" name="pengiriman_tgl" />
+							<input type="text" class="form-control col-md-7 col-xs-12" id="pengirimanh_tgljln" name="pengirimanh_tgljln" placeholder="Tanggal"/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -36,9 +39,41 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_jenisbrg">Jenis Barang </label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_supir">Identitas Mobil 
+						</label>
+						<div class="col-md-3 col-sm-3 col-xs-12">
+							<input type="text" class="form-control col-md-7 col-xs-12" id="pengirimanh_nopol" name="pengirimanh_nopol" aria-describedby="pengirimanh_nopol" placeholder="No.Polisi">
+						</div>
+						<!-- <div class="col-md-3 col-sm-3 col-xs-12">
+							<input type="text" class="form-control col-md-7 col-xs-12" id="pengirimanh_supir" name="pengirimanh_supir" aria-describedby="pengirimanh_supir" placeholder="Nama Supir">
+						</div> -->
+						<div class="col-md-3 col-sm-3 col-xs-12">
+						<select id="pengirimanh_supir" name="pengirimanh_supir" class="form-control col-md-7 col-xs-12">
+						@foreach($data_user as $supir)
+							<option value="{{$supir -> id}}">{{$supir -> name}}</option>
+						@endforeach
+						</select>
+						</div>
+						
+						
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_trip">Trip Ke </label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<select id="pengiriman_jenisbrg" name="pengiriman_jenisbrg" class="form-control col-md-7 col-xs-12">
+						<select id="pengirimanh_trip" name="pengirimanh_trip" class="form-control col-md-7 col-xs-12">
+						   <option value="1">1</option>
+						   <option value="2">2</option>
+						   <option value="3">3</option>
+						   <option value="4">4</option>
+						   <option value="5">5</option>
+						</select>
+						
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_jenismuatan">Jenis Muatan </label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<select id="pengirimanh_jenismuatan" name="pengirimanh_jenismuatan" class="form-control col-md-7 col-xs-12">
 						@foreach($data_jenisbrg as $jenisbrg)
 							<option value="{{$jenisbrg -> jenis_id}}">{{$jenisbrg -> jenis_nama}}</option>
 						@endforeach
@@ -46,101 +81,41 @@
 						
 						</div>
 					</div>
+					
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_namapengirim">Nama Pengirim 
-						</label>
-						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_namapengirim" name="pengiriman_namapengirim" aria-describedby="pengiriman_namapengirim" placeholder="Nama Pengirim">
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_nohppengirim" name="pengiriman_nohppengirim" aria-describedby="pengiriman_nohppengirim" placeholder="No.HP">
-						</div>
-						
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_alamatpengirim">Alamat Pengirim 
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_upahmobil">Upah Mobil 
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<textarea class="form-control col-md-7 col-xs-12" id="pengiriman_alamatpengirim" name="pengiriman_alamatpengirim" aria-describedby="pengiriman_alamatpengirim"></textarea>
+						<input type="number" class="form-control col-md-7 col-xs-12" id="pengirimanh_upahmobil" name="pengirimanh_upahmobil" aria-describedby="pengirimanh_upahmobil">
 						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_uangjalanjkt">Uang Jalan Jakarta 
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="number" class="form-control col-md-7 col-xs-12" id="pengirimanh_uangjalanjkt" name="pengirimanh_uangjalanjkt" aria-describedby="pengirimanh_uangjalanjkt">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_uangsisabkt">Uang Sisa Bayar Bukit Tinggi 
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="number" class="form-control col-md-7 col-xs-12" id="pengirimanh_uangsisabkt" name="pengirimanh_uangsisabkt" aria-describedby="pengirimanh_uangsisabkt">
+						</div>
+					</div>
 
-					</div>
-					<!-- <div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_nohppengirim">No.HP Pengirim 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_nohppengirim" name="pengiriman_nohppengirim" aria-describedby="pengiriman_nohppengirim">
-						</div>
-					</div> -->
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_kotapengirim">Kota Asal 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_kotapengirim" name="pengiriman_kotapengirim" aria-describedby="pengiriman_kotapengirim">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_namapenerima">Nama Penerima 
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengirimanh_berat">Keterangan 
 						</label>
 						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_namapenerima" name="pengiriman_namapenerima" aria-describedby="pengiriman_namapenerima" placeholder="Nama Penerima">
+						<input type="number" class="form-control col-md-7 col-xs-12" id="pengirimanh_ket" name="pengirimanh_ket" aria-describedby="pengirimanh_ket" placeholder="Keterangan">
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_nohppenerima" name="pengiriman_nohppenerima" aria-describedby="pengiriman_nohppenerima" placeholder="No.HP">
+						<input type="number" class="form-control col-md-7 col-xs-12" id="pengirimanh_berat" name="pengirimanh_berat" aria-describedby="pengirimanh_berat" placeholder="Berat">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_alamatpenerima">Alamat Penerima 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<textarea class="form-control col-md-7 col-xs-12" id="pengiriman_alamatpenerima" name="pengiriman_alamatpenerima" aria-describedby="pengiriman_alamatpenerima"></textarea>
-					</div>
-					</div>
-					<!-- <div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_nohppenerima">No.HP Penerima 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_nohppenerima" name="pengiriman_nohppenerima" aria-describedby="pengiriman_nohppenerima">
-						</div>
-					</div> -->
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_kotapenerima">Kota Tujuan 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_kotapenerima" name="pengiriman_kotapenerima" aria-describedby="pengiriman_kotapenerima">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_jumlah">Jumlah 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_jumlah" name="pengiriman_jumlah" aria-describedby="pengiriman_jumlah">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_panjang">Ukuran 
-						</label>
-						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_panjang" name="pengiriman_panjang" aria-describedby="pengiriman_panjang" placeholder="Panjang">
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_lebar" name="pengiriman_lebar" aria-describedby="pengiriman_lebar" placeholder="Lebar">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_totalberat">Total Berat 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_totalberat" name="pengiriman_totalberat" aria-describedby="pengiriman_totalberat">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengiriman_ongkir">Ongkos Kirim 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" class="form-control col-md-7 col-xs-12" id="pengiriman_ongkir" name="pengiriman_ongkir" aria-describedby="pengiriman_ongkir">
-						</div>
-					</div>
+					
+					
 						<input type="hidden" class="form-control col-md-7 col-xs-12" id="created_by" name="created_by" aria-describedby="created_by" value="{{auth()->user()->id}}">
 						
 						<input type="hidden" class="form-control col-md-7 col-xs-12" id="updated_by" name="updated_by" aria-describedby="updated_by" value="{{auth()->user()->id}}">
