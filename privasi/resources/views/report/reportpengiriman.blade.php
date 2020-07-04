@@ -53,7 +53,7 @@
             <img src="{{ asset('/assets/images/logoawr.png')}}" style="height:100px;width:100px;">
             </td>
             <td style="width:95%;border-style:none">
-                <h2>LAPORAN PENGIRIMAN AWR CARGO</h2>
+                <h2>LAPORAN TONASE BULANAN AWR CARGO</h2>
             </td>
         </tr>
         <tr>
@@ -61,30 +61,35 @@
             <table id="mydata" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
-						  <th>No.Resi</th>
-						  <th>Tanggal</th>
-						  <th>Nama Pengirim</th>
-						  <th>Kota Asal</th>
+						  <th rowspan="2">No</th>
+						  <th rowspan="2">Tanggal</th>
+						  <th rowspan="2">Trip</th>
+						  <th>Tonase</th>
 						  <!-- <th>Nama Penerima</th>
 						  <th>Kota Tujuan</th> -->
-						 <th>Status</th>
+						 <th rowspan="2">Wisma</th>
+						  
+                        </tr>
+                        <tr>
+                          <th>Darat</th>
+                          
 						  
                         </tr>
                       </thead>
                       <tbody id="show_data">
                     
-                      	 
+                      {{$i = 0}}
                       @foreach($data_reportpengiriman as $pengiriman)
                       <tr style="background-color:#F7F7F7;color:#000000;text-align:center">
-                          <td>{{$pengiriman->pengiriman_id}}</td>							
-						  <td>{{$pengiriman->pengiriman_tgl}}</td>
-						  <td>{{$pengiriman->pengiriman_namapengirim}}</td>							
-						  <td>{{$pengiriman->pengiriman_kotapengirim}}</td>
-						  <!-- <td>{{$pengiriman->pengiriman_namapenerima}}</td>							
-						  <td>{{$pengiriman->pengiriman_kotapenerima}}</td> -->
-						 <td>{{$pengiriman->status_desc}}</td>
+                          <td>{{$i+1}}</td>							
+						  <td>{{$pengiriman->pengirimanh_tgljln}}</td>
+						  <td>{{$pengiriman->pengirimanh_trip}}</td>							
+						  <td>{{$pengiriman->jumlahton}}</td>
+						  
+						 <td></td>
                           
                         </tr>
+                        {{$i++}}
                       @endforeach
                       </tbody>
                     </table>

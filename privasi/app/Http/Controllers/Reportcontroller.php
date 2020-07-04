@@ -25,8 +25,8 @@ class Reportcontroller extends Controller
       $tgl2 = $yyyy2."-".$mm2."-".$dd2;
       // dd($fd);
       
-        $pengiriman = DB::table('view_pengiriman')
-        ->whereBetween('pengiriman_tgl', [$tgl1, $tgl2])
+        $pengiriman = DB::table('view_laporanbulanan')
+        ->whereBetween('pengirimanh_tgljln', [$tgl1, $tgl2])
         ->get();
 
         $pdf = PDF::loadView('report/reportpengiriman', ['data_reportpengiriman' => $pengiriman])->setPaper('a4', 'landscape');;
